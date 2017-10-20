@@ -24,6 +24,7 @@ RUN chmod -R go+r /html-init/
 
 RUN mkdir /osmtracker
 ADD requirements.txt /osmtracker/
+RUN pip install setuptools --no-use-wheel --upgrade
 RUN pip install -r /osmtracker/requirements.txt
 
 WORKDIR /osmtracker/osm-analytic-tracker
