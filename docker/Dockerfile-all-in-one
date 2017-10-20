@@ -8,7 +8,7 @@ RUN apt-get -y update && apt-get install -y supervisor git python python-pip pyt
 RUN mkdir /osm-regions
 WORKDIR /osm-regions
 ADD docker/regions.txt .
-RUN wget --no-verbose -i regions.txt
+RUN wget --no-verbose --timestamping -i regions.txt
 
 RUN mkdir -p /data/db
 
