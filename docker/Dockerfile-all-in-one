@@ -9,6 +9,7 @@ RUN mkdir /osm-regions
 WORKDIR /osm-regions
 ADD docker/regions.txt .
 RUN wget --no-verbose --timestamping -i regions.txt
+ADD https://osm.piskvor.org/praha_wellrounded.poly praha.poly
 
 RUN mkdir -p /data/db
 

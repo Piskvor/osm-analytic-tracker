@@ -9,6 +9,7 @@ RUN mkdir /osm-regions
 WORKDIR /osm-regions
 ADD docker/regions.txt .
 RUN wget --no-verbose --timestamping -i regions.txt
+ADD https://osm.piskvor.org/praha_wellrounded.poly praha.poly
 
 RUN mkdir -p /html-init/dynamic
 COPY html/addresses.html html/cset_notes.html html/diffmap.html html/styles.css html/att.png html/att_l.png html/csetopen.png html/csetopen_l.png html/dev_work.png html/err.png html/err_l.png html/favicon.png html/gear.png html/gear_l.png html/icon_bw.png html/josm-icon.png html/layers.png html/node.png html/note.png html/note_l.png html/osm-icon.png html/relation.png html/user.png html/user_l.png html/way.png html/leaflet-button.js html/timestamp.js /html-init/
