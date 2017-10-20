@@ -78,6 +78,9 @@
     <li><div class="trailer csetopen"><div class="icon"><img src="/csetopen_l.png"></div>Open</div></li>
     {% elif c.state=="DONE" or c.state=="REANALYZING" %}
     <li><div><a href="/diffmap.html?cid={{meta.id}}">VisualDiff</a></div></li>
+    <li><div><a href="https://osmcha.mapbox.com/changesets/{{meta.id}}">OsmCha</a></div></li>
+    <li><div><a href="https://overpass-api.de/achavi/?changeset={{meta.id}}">Achavi</a></div></li>
+    <li><div><a href="http://zverik.osm.rambler.ru/whodidit/index.html?changeset={{meta.id}}&show=1">WhoDidIt</a></div></li>
     {%- endif %}
   </ul>
 {%- endmacro %}
