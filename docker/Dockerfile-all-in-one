@@ -30,6 +30,7 @@ COPY docker/config/nginx-osmtracker.conf /etc/nginx/sites-enabled/default
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir /osmtracker
+RUN pip install setuptools --no-use-wheel --upgrade
 ADD requirements.txt /osmtracker/
 RUN pip install -r /osmtracker/requirements.txt
 
