@@ -3,8 +3,8 @@
     "tracker": {
 	"osm_api_url": "https://api.openstreetmap.org",
 	"pre_labels": [
-	    {"area_file": "/osm-regions/denmark.poly", "area_check_type": "cset-bbox", "label": "inside-area"},
-	    {"area_file": "/osm-regions/denmark.poly", "area_check_type": "cset-center", "label": "center-inside-area"},
+	    {"area_file": "/osm-regions/praha.poly", "area_check_type": "cset-bbox", "label": "inside-area"},
+	    {"area_file": "/osm-regions/praha.poly", "area_check_type": "cset-center", "label": "center-inside-area"},
 	    {"__unused_example_regex": [{".meta.comment": "^Adjustments"}], "label": "adjustment"}
 	],
 	"prefilter_labels": [["inside-area", "center-inside-area"]],
@@ -24,7 +24,7 @@
             "type": "BackendHtml",
 	    "init_only": true,
             "map_center": {"area_file_conversion_type": "area_center",
-                           "area_file": "/osm-regions/denmark.poly"},
+                           "area_file": "/osm-regions/praha.poly"},
             "map_scale": "6",
             "path": "",
             "filename" : "index.html",
