@@ -5,7 +5,7 @@
 	"pre_labels": [
 	    {"area_file": "/osm-regions/praha.poly", "area_check_type": "cset-bbox", "label": "inside-area"},
 	    {"area_file": "/osm-regions/praha.poly", "area_check_type": "cset-center", "label": "center-inside-area"},
-	    {"__unused_example_regex": [{".meta.comment": "^Adjustments"}], "label": "adjustment"}
+	    {"fix_regex": [{".meta.comment": "^([fF]ix)|([oO]prava)|([rR]evert)"}], "label": "fix"}
 	],
 	"prefilter_labels": [["inside-area", "center-inside-area"]],
 	"post_labels": [
