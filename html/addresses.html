@@ -45,6 +45,8 @@ function small_load_done(respTxt, txtStatus, req) {
   $(".legend").after("<div class=\"hts\"></div>");
   tstype();
   append_count($("#summ_csets").text(), "#num_csets");
+  append_count($("#summ_csets_with_fixes").text(), "#num_csets_w_fixes");
+  append_count($("#summ_csets_with_mm").text(), "#num_csets_w_mm");
   append_count($("#summ_csets_with_notes").text(), "#num_csets_w_notes");
   append_count($("#summ_csets_with_addr_changes").text(), "#num_csets_w_addr_changes");
 }
