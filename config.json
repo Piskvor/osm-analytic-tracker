@@ -26,7 +26,7 @@
 	    "init_only": true,
             "map_center": {"area_file_conversion_type": "area_center",
                            "area_file": "/osm-regions/praha.poly"},
-            "map_scale": "10",
+            "map_scale": "9",
             "path": "",
             "filename" : "index.html",
             "template": "index.html"
