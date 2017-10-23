@@ -33,6 +33,16 @@
         },
         {
             "type": "BackendHtml",
+            "show_details": true,
+            "show_comments": true,
+            "path": "dynamic",
+            "page_title": "Recent Changesets",
+            "filename" : "today.html",
+            "template": "changeset.html"
+        },
+
+        {
+            "type": "BackendHtml",
             "init_only": true,
             "map_center": {"area_file_conversion_type": "area_center",
                 "area_file": "/osm-regions/praha.poly"},
@@ -43,6 +53,17 @@
             "filename" : "mm.html",
             "template": "index.html"
         },
+        {
+            "type": "BackendHtml",
+            "show_details": true,
+            "show_comments": true,
+            "path": "dynamic",
+            "labels": ["mm"],
+            "page_title": "Recent Maps.Me edits",
+            "filename" : "today_mm.html",
+            "template": "changeset.html"
+        },
+
         {
             "type": "BackendHtml",
             "init_only": true,
@@ -60,10 +81,12 @@
             "show_details": true,
             "show_comments": true,
             "path": "dynamic",
-            "page_title": "Recent Changesets",
-            "filename" : "today.html",
+            "labels": ["fix"],
+            "page_title": "Recent Fixes",
+            "filename" : "today_fix.html",
             "template": "changeset.html"
         },
+
         {
             "type": "BackendHtml",
             "path": "dynamic",
