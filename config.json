@@ -23,7 +23,7 @@
     "backends": [
         {
             "type": "BackendHtml",
-	    "init_only": true,
+            "init_only": true,
             "map_center": {"area_file_conversion_type": "area_center",
                            "area_file": "/osm-regions/praha.poly"},
             "map_scale": "9",
@@ -31,15 +31,15 @@
             "filename" : "index.html",
             "template": "index.html"
         },
-	{
-	    "type": "BackendHtml",
-	    "show_details": true,
-	    "show_comments": true,
-	    "path": "dynamic",
-	    "page_title": "Recent Changesets",
-	    "filename" : "today.html",
-	    "template": "changeset.html"
-	},
+        {
+            "type": "BackendHtml",
+            "show_details": true,
+            "show_comments": true,
+            "path": "dynamic",
+            "page_title": "Recent Changesets",
+            "filename" : "today.html",
+            "template": "changeset.html"
+        },
         {
             "type": "BackendHtml",
             "path": "dynamic",
@@ -49,8 +49,8 @@
         {
             "type": "BackendHtml",
             "path": "dynamic",
-	    "labels": ["address-node-change"],
-	    "page_title": "Recent Changesets Which Modifies Address Nodes",
+            "labels": ["address-node-change"],
+            "page_title": "Recent Changesets Which Modifies Address Nodes",
             "filename" : "dk_addresses.html",
             "template": "changeset.html"
         },
@@ -63,7 +63,7 @@
         {
             "type": "BackendGeoJson",
             "path": "dynamic",
-	    "exptype": "cset-bbox",
+            "exptype": "cset-bbox",
             "filename" : "today.json",
             "xclick_url": "http://osm.expandable.dk/diffmap.html?cid={cid}",
             "click_url": "diffmap.html?cid={cid}"
@@ -71,9 +71,9 @@
         {
             "type": "BackendGeoJson",
             "path": "dynamic",
-	    "exptype": "cset-files",
-	    "geojsondiff-filename": "cset-{id}.json",
-	    "bounds-filename": "cset-{id}.bounds",
+            "exptype": "cset-files",
+            "geojsondiff-filename": "cset-{id}.json",
+            "bounds-filename": "cset-{id}.bounds",
             "xclick_url": "http://osm.expandable.dk/diffmap.html?cid={cid}",
             "click_url": "diffmap.html?cid={cid}"
         }
