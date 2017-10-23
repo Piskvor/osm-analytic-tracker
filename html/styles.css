@@ -16,13 +16,6 @@ nav ul li:first-child {
     margin-top: 0px;
     #width: 200px;
 }
-#nav ul li:last-child {
-#    float:right;
-#    overflow: hidden;
-#    #width: auto;
-#    font-weight:normal;
-#    padding-right: 20px;
-#}
 nav ul li {
     #width: 140px;
     height:28px;
@@ -84,7 +77,7 @@ width: 360px;
 background-color: rgb(250,250,250);
 }
 
-#generation, #summ_csets, #summ_csets_with_notes, #summ_csets_with_addr_changes {
+#generation, #summ_csets, #summ_csets_with_notes, #summ_csets_with_addr_changes, .data-not-for-human-consumption {
 display: none;
 }
 #summary_created {
@@ -145,7 +138,7 @@ ul.csethead div.icon {
 ul.csethead div.icon img {
     margin: auto;
     position: absolute;
-    top: -2;
+    top: -2px;
     width: 16px;
     height: 16px;
 }
