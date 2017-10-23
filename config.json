@@ -33,6 +33,22 @@
         },
         {
             "type": "BackendHtml",
+            "path": "",
+            "labels": ["mm"],
+            "page_title": "Recent Changesets from maps.me",
+            "filename" : "mm.html",
+            "template": "index.html"
+        },
+        {
+            "type": "BackendHtml",
+            "path": "",
+            "labels": ["fix"],
+            "page_title": "Recent fixes/reverts",
+            "filename" : "fix.html",
+            "template": "index.html"
+        },
+        {
+            "type": "BackendHtml",
             "show_details": true,
             "show_comments": true,
             "path": "dynamic",
@@ -52,22 +68,6 @@
             "labels": ["address-node-change"],
             "page_title": "Recent Changesets Which Modifies Address Nodes",
             "filename" : "dk_addresses.html",
-            "template": "changeset.html"
-        },
-        {
-            "type": "BackendHtml",
-            "path": "dynamic",
-            "labels": ["mm"],
-            "page_title": "Recent Changesets from maps.me",
-            "filename" : "mm.html",
-            "template": "changeset.html"
-        },
-        {
-            "type": "BackendHtml",
-            "path": "dynamic",
-            "labels": ["fix"],
-            "page_title": "Recent fixes/reverts",
-            "filename" : "fix.html",
             "template": "changeset.html"
         },
         {
