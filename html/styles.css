@@ -397,3 +397,7 @@ h1 {
 .navigable_delete:hover:before {
     content: "Navigable meters deleted (excluding waterways)";
 }
+.startup {
+	margin-top: 5em;
+	margin-left: 2em;
+}
