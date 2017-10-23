@@ -11,6 +11,11 @@ ADD docker/regions.txt .
 RUN wget --no-verbose --timestamping -i regions.txt
 ADD https://osm.piskvor.org/praha_wellrounded.poly praha.poly
 
+RUN mkdir /osmtracker
+ADD requirements.txt /osmtracker/
+RUN pip install setuptools --no-use-wheel --upgrade
+RUN pip install -r /osmtracker/requirements.txt
+
 RUN mkdir -p /html-init/dynamic
 COPY html/addresses.html html/cset_notes.html html/diffmap.html html/styles.css html/att.png html/att_l.png html/csetopen.png html/csetopen_l.png html/dev_work.png html/err.png html/err_l.png html/favicon.png html/gear.png html/gear_l.png html/icon_bw.png html/josm-icon.png html/layers.png html/node.png html/note.png html/note_l.png html/osm-icon.png html/relation.png html/user.png html/user_l.png html/way.png html/leaflet-button.js html/timestamp.js /html-init/
 
@@ -22,11 +27,6 @@ ADD http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css  /html-init/leaflet-0.7.
 ADD http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js /html-init/leaflet-0.7.7/leaflet.js
 
 RUN chmod -R go+r /html-init/
-
-RUN mkdir /osmtracker
-ADD requirements.txt /osmtracker/
-RUN pip install setuptools --no-use-wheel --upgrade
-RUN pip install -r /osmtracker/requirements.txt
 
 WORKDIR /osmtracker/osm-analytic-tracker
 
