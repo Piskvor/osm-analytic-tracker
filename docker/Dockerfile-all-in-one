@@ -10,6 +10,16 @@ WORKDIR /osm-regions
 ADD docker/regions.txt .
 RUN wget --no-verbose -i regions.txt
 
+COPY docker/config/nginx.conf /etc/nginx/nginx.conf
+COPY docker/config/nginx-osmtracker.conf /etc/nginx/sites-enabled/default
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN mkdir /osmtracker
+RUN pip install setuptools --no-use-wheel --upgrade
+ADD requirements.txt /osmtracker/
+RUN pip install -r /osmtracker/requirements.txt
+
 RUN mkdir -p /data/db
 
 RUN mkdir -p /html/dynamic
@@ -23,16 +33,6 @@ ADD http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css  /html/leaflet-0.7.7/lea
 ADD http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js /html/leaflet-0.7.7/leaflet.js
 
 RUN chown -R www-data:www-data /html
-
-COPY docker/config/nginx.conf /etc/nginx/nginx.conf
-COPY docker/config/nginx-osmtracker.conf /etc/nginx/sites-enabled/default
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN mkdir /osmtracker
-RUN pip install setuptools --no-use-wheel --upgrade
-ADD requirements.txt /osmtracker/
-RUN pip install -r /osmtracker/requirements.txt
 
 WORKDIR /osmtracker/osm-analytic-tracker
 
