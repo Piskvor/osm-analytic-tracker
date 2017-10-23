@@ -33,6 +33,10 @@
         },
         {
             "type": "BackendHtml",
+            "init_only": true,
+            "map_center": {"area_file_conversion_type": "area_center",
+                "area_file": "/osm-regions/praha.poly"},
+                "map_scale": "9",
             "path": "",
             "labels": ["mm"],
             "page_title": "Recent Changesets from maps.me",
@@ -41,6 +45,10 @@
         },
         {
             "type": "BackendHtml",
+            "init_only": true,
+            "map_center": {"area_file_conversion_type": "area_center",
+                "area_file": "/osm-regions/praha.poly"},
+            "map_scale": "9",
             "path": "",
             "labels": ["fix"],
             "page_title": "Recent fixes/reverts",
@@ -81,7 +89,6 @@
             "path": "dynamic",
             "exptype": "cset-bbox",
             "filename" : "today.json",
-            "xclick_url": "http://osm.expandable.dk/diffmap.html?cid={cid}",
             "click_url": "diffmap.html?cid={cid}"
         },
         {
@@ -90,7 +97,6 @@
             "exptype": "cset-files",
             "geojsondiff-filename": "cset-{id}.json",
             "bounds-filename": "cset-{id}.bounds",
-            "xclick_url": "http://osm.expandable.dk/diffmap.html?cid={cid}",
             "click_url": "diffmap.html?cid={cid}"
         }
     ]
