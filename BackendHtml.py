@@ -55,8 +55,13 @@ class Backend(Backend.Backend):
         return value.strftime(JS_TIMESTAMP_FMT)
 
     def _utc_datetime_filter(self, value):
-        TIMESTAMP_FMT = '%Y:%m:%d %H:%M:%S'
+        TIMESTAMP_FMT = '%Y-%m-%dT%H:%M:%SZ'
         return value.strftime(TIMESTAMP_FMT)
+
+    def _local_datetime_filter(self, value):
+        TIMESTAMP_FMT = '%d.%m.%Y %H:%M:%S'
+        ltime = time.localtime(value)
+        return ltime.strftime(TIMESTAMP_FMT)
 
     def print_state(self, db):
         now = datetime.datetime.now()

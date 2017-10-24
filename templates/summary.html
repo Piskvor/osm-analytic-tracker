@@ -1,7 +1,7 @@
 <ul class="summary" >
-  <li><div>Tracked period: {{track_starttime|utc_datetime}} - {{track_endtime|utc_datetime}} UTC</div></li>
+  <li><div>Tracked period: <time class="timeago" id="track_starttime">{{track_starttime|utc_datetime}}</time> - <time class="timeago"  id="track_endtime">{{track_endtime|utc_datetime}}</time></div></li>
   {% if cset_first%}
-  <li><div>Changeset period: {{cset_first|utc_datetime}} - {{track_endtime|utc_datetime}} UTC</div></li>
+  <li><div>Changeset period: <time class="timeago">{{cset_first|utc_datetime}}</time> - <time class="timeago">{{track_endtime|utc_datetime}}</time></div></li>
   {% endif %}
   <li><div><img src="/node.png"> Nodes created: {{edits['node']['create']}} modified: {{edits['node']['modify']}} deleted: {{edits['node']['delete']}}</div></li>
   <li><div><img src="/way.png"> Ways created: {{edits['way']['create']}} modified: {{edits['way']['modify']}} deleted: {{edits['way']['delete']}}</div></li>

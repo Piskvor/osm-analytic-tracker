@@ -49,6 +49,9 @@ html, body, #map {
 
 <body>
 <div id="map">
+   <div class='sq overlay round'>
+      <p class='pad2 change-meta' id='reverse-location'></p>
+   </div>
 </div>
 
 <script type="text/javascript">
@@ -71,6 +74,7 @@ var boundsfile;
        console.log('cid='+cid);
        load_json(jsonfile);
        load_bounds(boundsfile);
+       load_location(map.getCenter(), map.getZoom())
     }
   });
 })(jQuery);
@@ -93,13 +97,14 @@ var baseMaps = {
 };
 var map = new L.Map('map', {'dragging' : true, 'zoomControl': false, 'doubleClickZoom': false, layers:[osm]});
 
-L.control.layers(baseMaps).addTo(map);
-//L.control.layers(baseMaps, overlayMaps).addTo(map);
-
 map.attributionControl.setPrefix(''); // Dont show 'powered by..'
 
 L.easyButton('josmicon', openInJOSM ,"Open in JOSM. You need to have JOSM running locally, listening for HTTPS remote control commands. See also JOSM ticket 10033 (https://josm.openstreetmap.de/ticket/10033)", map);
 L.easyButton('osmicon', openOSM ,"Open changeset on openstreetmap.org", map);
+
+L.control.layers(baseMaps).addTo(map);
+//L.control.layers(baseMaps, overlayMaps).addTo(map);
+
 
 function openInJOSM() {
   var mb = map.getBounds();
@@ -249,6 +254,11 @@ function load_bounds(boundsfile){
       map.fitBounds([[bbox[0],bbox[1]],[bbox[2],bbox[3]]]);
     }
   }).error(function() {});
+}
+
+function load_location(center, zoom) {
+    console.log(center);
+    console.log(zoom);
 }
 
 </script>
