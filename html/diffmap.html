@@ -269,9 +269,21 @@ function load_bounds(boundsfile){
   }).error(function() {});
 }
 
-function load_location(center, zoom) {
-    console.log(center);
-    console.log(zoom);
+function load_location(ll, zoom) {
+    if (zoom > 12) {
+        zoom = 12;
+    }
+    var nominatim_tmpl = '//nominatim.piskvor.org/reverse?format=json' +
+      '&lat={lat}&lon={lon}&zoom={zoom}';
+    jQuery.getJSON(
+		nominatim_tmpl.replace('{lat}', ll.lat).replace('{lon}', ll.lng).replace('{zoom}', zoom),
+        function (resp) {
+			var textbox = document.getElementById('reverse-location');
+			textbox.innerHTML =
+				'' + resp.display_name + '';
+			jQuery(textbox).addClass('found');
+		}
+    );
 }
 
 </script>

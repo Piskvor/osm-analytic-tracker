@@ -401,3 +401,17 @@ h1 {
 	margin-top: 5em;
 	margin-left: 2em;
 }
+
+.sq {
+    margin-top: 2em;
+}
+
+.sq #reverse-location {
+    margin-left: 2em;
+    display: inline;
+    padding: 1em;
+}
+
+.sq #reverse-location.found {
+    background-color: white;
+}
