@@ -12,7 +12,10 @@ import logging
 import jinja2
 import tempfilewriter
 
+from tzlocal import get_localzone
+
 logger = logging.getLogger(__name__)
+local_tz = get_localzone()
 
 class Backend(Backend.Backend):
 
@@ -47,6 +50,7 @@ class Backend(Backend.Backend):
                                       trim_blocks=True, lstrip_blocks=True)
         self.env.filters['js_datetime'] = self._js_datetime_filter
         self.env.filters['utc_datetime'] = self._utc_datetime_filter
+        self.env.filters['local_datetime'] = self._local_datetime_filter
 
     def _js_datetime_filter(self, value):
         '''Jinja2 filter formatting timestamps in format understood by javascript'''
@@ -60,7 +64,7 @@ class Backend(Backend.Backend):
 
     def _local_datetime_filter(self, value):
         TIMESTAMP_FMT = '%d.%m.%Y %H:%M:%S'
-        ltime = time.localtime(value)
+        ltime = value.replace(tzinfo=pytz.utc).astimezone(local_tz)
         return ltime.strftime(TIMESTAMP_FMT)
 
     def print_state(self, db):

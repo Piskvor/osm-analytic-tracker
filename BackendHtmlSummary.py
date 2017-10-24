@@ -22,6 +22,7 @@ class Backend(BackendHtml.Backend):
                                       trim_blocks=True, lstrip_blocks=True)
         self.env.filters['js_datetime'] = self._js_datetime_filter
         self.env.filters['utc_datetime'] = self._utc_datetime_filter
+        self.env.filters['local_datetime'] = self._local_datetime_filter
         self.horizon_hours = globalconfig.get('horizon_hours','tracker')
 
     def print_state(self, db):

@@ -9,6 +9,7 @@
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta http-equiv="refresh" content="86400">
    <script src="/jquery-2.1.3/jquery.min.js"></script>
+   <script src="/jquery-2.1.3/jquery.timeago.js"></script>
    <link rel="stylesheet" href="/leaflet-0.7.7/leaflet.css" />
    <script src="/leaflet-0.7.7/leaflet.js"></script>
    <script src="/timestamp.js"></script>
@@ -88,7 +89,8 @@ function small_load_done(respTxt, txtStatus, req) {
   append_count($("#summ_csets_with_notes").text(), "#num_csets_w_notes");
   append_count($("#summ_csets_with_addr_changes").text(), "#num_csets_w_addr_changes");
   compute_lag();
-  large_load_test();  
+  large_load_test();
+  load_done_after();
 }
 
 function large_load_test() {
@@ -129,6 +131,7 @@ function large_load_done() {
       $(".changeset_tag-imagery_used").show();
       console.log('Enable view 2 end');
     }
+	load_done_after();
 }
 
 function compute_lag(ts_src, dest) {
@@ -241,6 +244,10 @@ function load_json(){
       markers = new L.geoJson(data, { style: styleFunc, onEachFeature: onEachFeature }).addTo(map);
     }
   }).error(function(jqXHR, textStatus, errorThrown) { console.log("json_load() error:"+textStatus); });
+}
+
+function load_done_after() {
+	jQuery("time.timeago").timeago();
 }
 </script>
 </body>
