@@ -106,7 +106,6 @@ L.control.layers(baseMaps).addTo(map);
 
 map.whenReady(function () {
     load_location(map.getCenter(), map.getZoom());
-	updateOsmLink();
 });
 map.on('zoomend', updateOsmLink);
 map.on('moveend', updateOsmLink);
@@ -278,10 +277,13 @@ function load_location(ll, zoom) {
     jQuery.getJSON(
 		nominatim_tmpl.replace('{lat}', ll.lat).replace('{lon}', ll.lng).replace('{zoom}', zoom),
         function (resp) {
+			console.log(resp);
 			var textbox = document.getElementById('reverse-location');
-			textbox.innerHTML =
-				'' + resp.display_name + '';
-			jQuery(textbox).addClass('found');
+			if (textbox) {
+				textbox.innerHTML =
+					'' + resp.display_name + '';
+				jQuery(textbox).addClass('found');
+			}
 		}
     );
 }
