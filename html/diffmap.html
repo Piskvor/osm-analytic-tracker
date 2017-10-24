@@ -74,7 +74,6 @@ var boundsfile;
        console.log('cid='+cid);
        load_json(jsonfile);
        load_bounds(boundsfile);
-       load_location(map.getCenter(), map.getZoom())
     }
   });
 })(jQuery);
@@ -83,7 +82,7 @@ var tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 var mapboxUrl = 'https://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NDg1bDA1cjYzM280NHJ5NzlvNDMifQ.d6e-nNyBDtmQCVwVNivz7A';
 var wikimediaUrl = 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png';
 
-var osmAttrib='&copy; <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors';
+var osmAttrib='&copy; <a href="https://www.openstreetmap.org/#" target="_blank" id="osm-attrib-link">OpenStreetMap</a> contributors';
 var mapboxAttrib = '&copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> ';
 
 var osm =   new L.TileLayer(tileUrl, {minZoom: 6, maxZoom: 18, subdomains: ['a','b','c'], attribution: osmAttrib, opacity:0.4});
@@ -105,6 +104,20 @@ L.easyButton('osmicon', openOSM ,"Open changeset on openstreetmap.org", map);
 L.control.layers(baseMaps).addTo(map);
 //L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+map.whenReady(function () {
+    load_location(map.getCenter(), map.getZoom());
+	updateOsmLink();
+});
+map.on('zoomend', updateOsmLink);
+map.on('moveend', updateOsmLink);
+
+function updateOsmLink() {
+	var center = map.getCenter();
+	var oal = document.getElementById('osm-attrib-link');
+	var hash = 'map=' + map.getZoom() + '/' + center.lat + '/' + center.lng;
+	window.location.hash = hash;
+	oal.href = oal.href.replace(/#.*/, '#' + hash);
+}
 
 function openInJOSM() {
   var mb = map.getBounds();
