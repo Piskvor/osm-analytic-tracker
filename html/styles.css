@@ -415,3 +415,7 @@ h1 {
 .sq #reverse-location.found {
     background-color: white;
 }
+
+.leaflet-tile-pane {
+    filter: grayscale(100%);
+}
