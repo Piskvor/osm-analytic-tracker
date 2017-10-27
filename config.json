@@ -112,7 +112,7 @@
             "path": "dynamic",
             "labels": ["fix"],
             "page_title": "Recent Fixes",
-            "filename" : "today_fix.html",
+            "filename" : "fix.html",
             "template": "changeset.html"
         },
         {
