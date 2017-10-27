@@ -7,20 +7,20 @@ NOCACHE=0
 DOCKER_ARGS=""
 CACHE_BUSTER="$(date)"
 
-if [ "$1" = "--full" ]; then
+if [ "${1:-}" = "--full" ]; then
 	FULL=1
 	shift
 fi
 
-if [ "$1" = "--no-cache" ]; then
+if [ "${1:-}" = "--no-cache" ]; then
 	NOCACHE=1
 	shift
-	if [ "$1" = "--full" ]; then
+	if [ "${1:-}" = "--full" ]; then
 		FULL=1
 		shift
 	fi
 else
-	if [ "$1" = "--cache" ] ; then
+	if [ "${1:-}" = "--cache" ] ; then
 		CACHE_BUSTER=""
 	fi
 fi
