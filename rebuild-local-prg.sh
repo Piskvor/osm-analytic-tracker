@@ -44,8 +44,7 @@ sudo docker build ${DOCKER_ARGS} \
 	--build-arg REGIONS_URL_PREFIX="https://maps.piskvor.org/regions" \
 	-t osm-analytic-tracker \
 	.
-docker stop osmat-container
-docker rm osmat-container
+docker stop osmat-container && docker rm osmat-container || true
 docker run -d --restart=always --name=osmat-container -p 80:80 osm-analytic-tracker:latest
 sleep 5
 docker ps
