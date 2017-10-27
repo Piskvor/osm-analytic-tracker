@@ -2,10 +2,13 @@
 
 set -euxo pipefail
 
+HERE=$(dirname $(realpath $0))
+
 FULL=0
 NOCACHE=0
 DOCKER_ARGS=""
 CACHE_BUSTER="$(date)"
+DOCKER_VOLUMES="" #-v ${HERE}/mounts/html:/html -v ${HERE}/mounts/osmtracker:/osmtracker
 
 if [ "${1:-}" = "--full" ]; then
 	FULL=1
@@ -45,6 +48,6 @@ sudo docker build ${DOCKER_ARGS} \
 	-t osm-analytic-tracker \
 	.
 docker stop osmat-container && docker rm osmat-container || true
-docker run -d --restart=always --name=osmat-container -p 80:80 osm-analytic-tracker:latest
+docker run -d --restart=always --name=osmat-container -p 80:80 ${DOCKER_VOLUMES} osm-analytic-tracker:latest
 sleep 5
 docker ps
