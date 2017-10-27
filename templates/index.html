@@ -22,7 +22,6 @@
 <li><a class="vcenter" href="/mm.html">Maps.Me edits<span id="num_csets_mm"></span></a></li>
 <li><a class="vcenter" href="/cset_notes.html">Changeset Notes<span id="num_csets_w_notes"></span></a></li>
 <li><a class="vcenter" href="/addresses.html">Address Changes<span id="num_csets_w_addr_changes"></span></a></li>
-<!-- <li><a  class="vcenter"href="/addresses.html">New feature<img src=att_l.png> NEW</a></li> -->
 </ul>
 </nav>
 <body class="navbar">
@@ -42,6 +41,11 @@
 var refresh = 60000;
 var age = 0;
 var view = 1; // Zero for default view, 1 for advanced view
+var templateName = 'today';
+var usedName = window.location.pathname.match(/\/([A-Za-z0-9._-]+)\.html/);
+if (usedName && usedName.length === 2 && usedName[1] !== 'index') {
+	templateName = usedName[1];
+}
 
 (function($)
 {
@@ -77,7 +81,7 @@ function set_refresher(refresh) {
 
 function small_load() {
   console.log('small_load()');
-  $("#summary").load("/dynamic/today-summ.html", small_load_done);
+  $("#summary").load("/dynamic/" + templateName + "-summ.html", small_load_done);
 }
 
 function small_load_done(respTxt, txtStatus, req) {
@@ -99,7 +103,7 @@ function large_load_test() {
     console.log('Not in sync, have '+$("#gen").text()+' and '+$("#gen_loaded").text());
     age = 0;
     $("#gen_loaded").text($("#gen").text());
-    $("#logger").load("/dynamic/today.html", large_load_done);
+    $("#logger").load("/dynamic/" + templateName + ".html", large_load_done);
     load_json();
     set_refresher(refresh);
   } else {
@@ -252,7 +256,7 @@ function onEachFeature(feature, layer) {
 function load_json(){
   $.ajax({
     datatype: "json",
-    url: "/dynamic/today.json",
+    url: "/dynamic/" + templateName + ".json",
     success: function(data, text) {
       map.removeLayer(markers);
       markers = new L.geoJson(data, { style: styleFunc, onEachFeature: onEachFeature }).addTo(map);

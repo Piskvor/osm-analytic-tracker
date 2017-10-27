@@ -9,8 +9,9 @@
 	"prefilter_labels": [["inside-area", "center-inside-area"]],
 	"post_labels": [
 	    {"regex": [{".changes.tag.osak:identifier": ""}], "label": "address-node-change"},
-        {"fix_regex": [{".meta.comment": "([fF]ix)|([oO]prava)|([rR]evert)"}], "label": "fix"},
-        {"mm_suspicion": [{".meta.comment": "mm"}], "label": "mm"}
+        {"regex": [{".meta.comment": "([fF]ix)|([oO]prava)|([rR]evert)"}], "label": "fix"},
+        {"regex": [{".changes.tag.created_by": "maps.me"}], "label": "mm"},
+        {"regex": [{".meta.comment": "mm"}], "label": "mm"}
 	],
 	"history": "5 minutes ago",
 	"horizon_type": "sliding",
@@ -40,6 +41,19 @@
             "filename" : "today.html",
             "template": "changeset.html"
         },
+        {
+            "type": "BackendHtmlSummary",
+            "path": "dynamic",
+            "filename" : "today-summ.html",
+            "template": "summary.html"
+        },
+        {
+            "type": "BackendGeoJson",
+            "path": "dynamic",
+            "exptype": "cset-bbox",
+            "filename" : "today.json",
+            "click_url": "diffmap.html?cid={cid}"
+        },
 
         {
             "type": "BackendHtml",
@@ -60,8 +74,23 @@
             "path": "dynamic",
             "labels": ["mm"],
             "page_title": "Recent Maps.Me edits",
-            "filename" : "today_mm.html",
+            "filename" : "mm.html",
             "template": "changeset.html"
+        },
+        {
+            "type": "BackendHtmlSummary",
+            "path": "dynamic",
+            "labels": ["mm"],
+            "filename" : "mm-summ.html",
+            "template": "summary.html"
+        },
+        {
+            "type": "BackendGeoJson",
+            "path": "dynamic",
+            "labels": ["mm"],
+            "exptype": "cset-bbox",
+            "filename" : "mm.json",
+            "click_url": "diffmap.html?cid={cid}"
         },
 
         {
@@ -86,6 +115,21 @@
             "filename" : "today_fix.html",
             "template": "changeset.html"
         },
+        {
+            "type": "BackendHtmlSummary",
+            "path": "dynamic",
+            "labels": ["fix"],
+            "filename" : "fix-summ.html",
+            "template": "summary.html"
+        },
+        {
+            "type": "BackendGeoJson",
+            "path": "dynamic",
+            "labels": ["fix"],
+            "exptype": "cset-bbox",
+            "filename" : "fix.json",
+            "click_url": "diffmap.html?cid={cid}"
+        },
 
         {
             "type": "BackendHtml",
@@ -101,19 +145,7 @@
             "filename" : "dk_addresses.html",
             "template": "changeset.html"
         },
-        {
-            "type": "BackendHtmlSummary",
-            "path": "dynamic",
-            "filename" : "today-summ.html",
-            "template": "summary.html"
-        },
-        {
-            "type": "BackendGeoJson",
-            "path": "dynamic",
-            "exptype": "cset-bbox",
-            "filename" : "today.json",
-            "click_url": "diffmap.html?cid={cid}"
-        },
+
         {
             "type": "BackendGeoJson",
             "path": "dynamic",
