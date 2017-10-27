@@ -15,7 +15,7 @@ COPY docker/config/nginx-osmtracker.conf /etc/nginx/sites-enabled/default
 
 RUN mkdir -p /html/dynamic
 
-ARG REGIONS_URL_PREFIX=""
+ARG REGIONS_URL_PREFIX="https://maps.piskvor.org/regions"
 RUN mkdir /osm-regions
 WORKDIR /osm-regions
 ADD docker/regions.txt .
