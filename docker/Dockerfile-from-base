@@ -63,3 +63,5 @@ EXPOSE 80
 
 ADD docker/supervisord.conf /osmtracker/
 CMD ["/usr/bin/supervisord", "-c", "/osmtracker/supervisord.conf"]
+
+VOLUME ["/html", "/osmtracker"]
