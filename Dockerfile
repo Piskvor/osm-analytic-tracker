@@ -1,1 +1,1 @@
-docker/Dockerfile-all-in-one
+docker/Dockerfile-from-base

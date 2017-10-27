@@ -1,0 +1,65 @@
+FROM dockers.threepio:5000/osmat-base
+MAINTAINER Jan Martinec <jan@martinec.name>
+
+ARG TIMEZONE="Etc/UTC"
+RUN if [ "$TIMEZONE" != "" ]; then \
+		if [ -f "/usr/share/zoneinfo/$TIMEZONE" ]; then \
+					rm /etc/localtime && ln -s "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime && (echo "$TIMEZONE" | busybox tee /etc/timezone) && dpkg-reconfigure tzdata ;\
+		else\
+			echo "Unknown timezone: $TIMEZONE"; exit 3; \
+		fi ;\
+	fi
+
+COPY docker/config/nginx.conf /etc/nginx/nginx.conf
+COPY docker/config/nginx-osmtracker.conf /etc/nginx/sites-enabled/default
+
+RUN mkdir -p /html/dynamic
+
+ARG REGIONS_URL_PREFIX=""
+RUN mkdir /osm-regions
+WORKDIR /osm-regions
+ADD docker/regions.txt .
+RUN if [ "$REGIONS_URL_PREFIX" != "" ]; then \
+		sed -i "s|https://download.geofabrik.de|${REGIONS_URL_PREFIX}/download.geofabrik.de|g" regions.txt; \
+	fi
+RUN wget --no-verbose --timestamping -i regions.txt
+RUN wget --no-verbose --timestamping https://maps.piskvor.org/praha.poly
+
+RUN mkdir /html/jquery-2.1.3
+WORKDIR /html/jquery-2.1.3
+RUN wget --no-verbose --timestamping https://code.jquery.com/jquery-2.1.3.min.js && ln -s jquery-2.1.3.min.js jquery.min.js
+RUN wget --no-verbose --timestamping http://timeago.yarp.com/jquery.timeago.js
+
+RUN mkdir -p /html/leaflet-0.7.7
+WORKDIR /html/leaflet-0.7.7
+RUN wget --no-verbose --timestamping http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css
+RUN wget --no-verbose --timestamping http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js
+
+RUN mkdir -p /data/db
+
+# if provided, all the commands below will always run - forcing HTML and Python files to be rebuilt
+ARG CACHEBUSTER=""
+RUN if [ "$CACHEBUSTER" != "" ]; then \
+		echo "cachebuster: $CACHEBUSTER" ;\
+	fi
+
+COPY html/addresses.html html/cset_notes.html html/diffmap.html html/styles.css html/att.png html/att_l.png html/csetopen.png html/csetopen_l.png html/dev_work.png html/err.png html/err_l.png html/favicon*.png html/gear.png html/gear_l.png html/icon_bw.png html/josm-icon.png html/layers.png html/node.png html/note.png html/note_l.png html/osm-icon.png html/relation.png html/user.png html/user_l.png html/way.png html/leaflet-button.js html/timestamp.js html/starting.html /html/
+
+RUN cp /html/starting.html /html/index.html
+RUN chown -R www-data:www-data /html
+
+WORKDIR /osmtracker/osm-analytic-tracker
+
+RUN mkdir /osmtracker-config
+ADD config.json /osmtracker-config/
+RUN sed -i 's/"path": "html"/"path": "\/html"/' /osmtracker-config/config.json
+
+ADD *.py logging.conf ./
+ADD osm ./osm
+RUN mkdir /osmtracker/templates
+ADD templates templates/
+
+EXPOSE 80
+
+ADD docker/supervisord.conf /osmtracker/
+CMD ["/usr/bin/supervisord", "-c", "/osmtracker/supervisord.conf"]
