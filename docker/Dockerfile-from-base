@@ -61,7 +61,15 @@ ADD templates templates/
 
 EXPOSE 80
 
+ARG IS_MONGO_STANDALONE="0"
 ADD docker/supervisord.conf /osmtracker/
+RUN if [ "$IS_MONGO_STANDALONE" = "0" ]; then \
+		sed -i "s/autostart=false/autostart=true/" /osmtracker/supervisord.conf; \
+		echo "mongo autostart" ;\
+	else \
+		sed -i "s/localhost:27017/osmat-container-mongo:27017/" /osmtracker/supervisord.conf; \
+		echo "mongo container"; \
+	fi
 CMD ["/usr/bin/supervisord", "-c", "/osmtracker/supervisord.conf"]
 
 VOLUME ["/html", "/osmtracker"]

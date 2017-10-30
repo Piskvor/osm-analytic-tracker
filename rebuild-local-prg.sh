@@ -12,6 +12,9 @@ CACHE_BUSTER=""
 DOCKER_VOLUMES=""
 DOCKER_VOLUMES="-v ${HERE}/mounts/osmtracker:/osmtracker"
 #DOCKER_VOLUMES="-v ${HERE}/mounts/html:/html -v ${HERE}/mounts/osmtracker:/osmtracker"
+MONGO_CONTAINER=""
+MONGO_CONTAINER="osmat-container-mongo"
+IS_MONGO_STANDALONE=0
 
 if [ "${1:-}" = "--full" ]; then
 	FULL=1
@@ -20,6 +23,7 @@ fi
 
 if [ "${1:-}" = "--no-cache" ]; then
 	NOCACHE=1
+	CACHE_BUSTER="$(date)"
 	shift
 	if [ "${1:-}" = "--full" ]; then
 		FULL=1
@@ -44,10 +48,20 @@ if [ "$NOCACHE" -gt 0 ]; then
 	DOCKER_ARGS="${DOCKER_ARGS} --no-cache"
 fi
 
+DOCKER_LINK_TO=""
+if [ "$MONGO_CONTAINER" != "" ] ; then
+	IS_MONGO=$(docker ps --quiet --filter name="$MONGO_CONTAINER" | wc -l)
+	if [ "$IS_MONGO" -gt 0 ]; then
+		DOCKER_LINK_TO="--link $MONGO_CONTAINER"
+		IS_MONGO_STANDALONE=1
+	fi
+fi
+
 sudo docker build ${DOCKER_ARGS} \
 	--build-arg CACHEBUSTER="$CACHE_BUSTER" \
 	--build-arg TIMEZONE="$(cat /etc/timezone)" \
 	--build-arg REGIONS_URL_PREFIX="https://maps.piskvor.org/regions" \
+	--build-arg IS_MONGO_STANDALONE="$IS_MONGO_STANDALONE" \
 	-t osm-analytic-tracker \
 	.
 
@@ -60,12 +74,18 @@ if [ "$DOCKER_VOLUMES" != "" ]; then
 	mkdir -p ${HERE}/mounts/osmtracker/osm-analytic-tracker
 	cp ${HERE}/*.py ${HERE}/logging.conf ${HERE}/mounts/osmtracker/osm-analytic-tracker
 	cp -r ${HERE}/osm ${HERE}/mounts/osmtracker/osm-analytic-tracker/
-#	cp -r ${HERE}/templates ${HERE}/mounts/osmtracker/
 	cp -r ${HERE}/templates ${HERE}/mounts/osmtracker/osm-analytic-tracker/
 	cp ${HERE}/docker/supervisord.conf ${HERE}/mounts/osmtracker/
+	if [ "$IS_MONGO_STANDALONE" = "0" ]; then \
+		sed -i "s/autostart=false/autostart=true/" ${HERE}/mounts/osmtracker/supervisord.conf; \
+		echo "mongo autostart" ;\
+	else \
+		sed -i "s/localhost:27017/osmat-container-mongo:27017/" ${HERE}/mounts/osmtracker/supervisord.conf; \
+		echo "mongo container"; \
+	fi
 #	exit;
 fi
 
-docker run -d --restart=always --name=osmat-container -p 80:80 ${DOCKER_VOLUMES} osm-analytic-tracker:latest
+docker run -d ${DOCKER_LINK_TO} --restart=always --name=osmat-container -p 80:80 ${DOCKER_VOLUMES} osm-analytic-tracker:latest
 sleep 5
 docker ps

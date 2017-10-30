@@ -1,0 +1,23 @@
+FROM dockers.threepio:5000/osmat-base
+MAINTAINER Jan Martinec <jan@martinec.name>
+
+# if provided, all the commands below will always run
+ARG CACHEBUSTER=""
+RUN if [ "$CACHEBUSTER" != "" ]; then \
+		echo "cachebuster: $CACHEBUSTER" ;\
+	fi
+
+ARG TIMEZONE="Etc/UTC"
+RUN if [ "$TIMEZONE" != "" ]; then \
+		if [ -f "/usr/share/zoneinfo/$TIMEZONE" ]; then \
+					rm /etc/localtime && ln -s "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime && (echo "$TIMEZONE" | busybox tee /etc/timezone) && dpkg-reconfigure tzdata ;\
+		else\
+			echo "Unknown timezone: $TIMEZONE"; exit 3; \
+		fi ;\
+	fi
+
+RUN mkdir -p /data/db
+
+EXPOSE 27017 28017
+
+CMD "/usr/bin/mongod"
