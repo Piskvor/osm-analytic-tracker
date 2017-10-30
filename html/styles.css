@@ -1,421 +1,719 @@
 nav ul {
-    display: inline-block;
-    position:fixed; top:0px; margin:auto; z-index:100000; width:100%;
-    background:rgb(32,100,128);
-    v1background:rgb(30,85,122);
-    height:28px;
-    #line-height: 28px;
-    padding: 5px;
-    opacity:1;
-    border-bottom: 2px solid rgb(255,255,255);
-}
-body.navbar{
-    padding-top:40px;
-}
-nav ul li:first-child {
-    margin-top: 0px;
-    #width: 200px;
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  margin: auto;
+  z-index: 100000;
+  width: 100%;
+  background: #206480;
+  height: 28px;
+  padding: 5px;
+  opacity: 1;
+  border-bottom: 2px solid #ffffff;
 }
 nav ul li {
-    #width: 140px;
-    height:28px;
-    color: #fff;
-    font-weight:bold;
-    border-right: 2px solid rgb(50,105,142);
+  height: 28px;
+  color: #fff;
+  font-weight: bold;
+  border-right: 2px solid #32698e;
+}
+nav ul li:first-child {
+  margin-top: 0;
 }
 nav ul li a {
-    display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    #font-size: 14px;
-    #line-height: 44px;
-    #padding-top: 7px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-}
-nav ul li a.vcenter {
-    padding-top: 7px;
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
 }
 nav ul li a:hover {
-    color: #fff;
+  color: #fff;
+}
+nav ul li a.vcenter {
+  padding-top: 7px;
 }
 nav ul li.selected a {
-    color: #fff;
+  color: #fff;
 }
-
+body.navbar {
+  padding-top: 40px;
+}
 body {
-    font-family: Ubuntu,"Bitstream Vera Sans","DejaVu Sans",Tahoma,sans-serif;font-size:12px;
-    margin: 0;
+  font-family: Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
+  font-size: 12px;
+  margin: 0;
 }
-
 #map {
-display:inline-block;
-vertical-align:top;
-width: 480px;
-height: 320px;
+  display: inline-block;
+  vertical-align: top;
+  width: 480px;
+  height: 320px;
 }
-
 #csetlist {
-    margin: 8px;
+  margin: 8px;
 }
-
 #status {
-display:inline-block;
-vertical-align:top;
+  display: inline-block;
+  vertical-align: top;
 }
-
 #summary {
-border: 1px solid rgb(92,152,205);
-border-radius: 3px;
-background-color: rgb(240,247,252);
+  border: 1px solid #5c98cd;
+  border-radius: 3px;
+  background-color: #f0f7fc;
 }
-
 #dev_notes {
-display: none;
-width: 360px;
-background-color: rgb(250,250,250);
+  display: none;
+  width: 360px;
+  background-color: #fafafa;
 }
-
-#generation, #summ_csets, #summ_csets_with_notes, #summ_csets_with_addr_changes, .data-not-for-human-consumption {
-display: none;
+#generation {
+  display: none;
+}
+#summ_csets {
+  display: none;
+}
+#summ_csets_with_notes {
+  display: none;
+}
+#summ_csets_with_addr_changes {
+  display: none;
+}
+.data-not-for-human-consumption {
+  display: none;
 }
 #summary_created {
-display: none;
+  display: none;
 }
 #pointer_timestamp {
-display: none;
+  display: none;
 }
 #sequence_numbers {
-display: none;
+  display: none;
 }
-
 .summary {
-margin: 4px;
+  margin: 4px;
 }
-
-ul
-{
-list-style-type:none;
-padding:0;
-#overflow:hidden;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
-
+ul li {
+  float: left;
+  margin-right: 4px;
+}
 ul.details {
-overflow: visible;
+  overflow: visible;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
-
-li.cset
-{
-display: inline-block;
-margin-top: 10px;
-margin-bottom: 14px;
-border: 1px solid rgb(220,220,220);
+ul.details:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
-
-li.cset div.legend
-{
-width: 6px;
-padding-left: 0;
-padding-right: 0;
-padding-top: 6px;
-padding-bottom: 6px;
+ul.details li {
+  margin: 3px;
 }
-
+ul.details li div {
+  display: inline;
+  border: 1px solid #646464;
+  padding: 1px;
+}
+ul.details li div:first-child {
+  background-color: #ffffc8;
+  padding: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding-right: 3px;
+}
+ul.details li div + div {
+  padding: 1px;
+  padding-left: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left: 0;
+}
+ul.details li div.trailer {
+  border: 0;
+  background-color: transparent;
+}
+ul.details li.action_create div:first-child {
+  background-color: #dcffdc;
+}
+ul.details li.action_delete div:first-child {
+  background-color: #ffdcdc;
+}
+ul.details li.action_modify div:first-child {
+  background-color: #fafac8;
+}
+ul.details li.action_geomodif div:first-child {
+  background-color: #ececec;
+}
+ul.details li.comment div {
+  border: 0;
+  background-color: transparent;
+}
+li.cset {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #dcdcdc;
+}
+li.cset div.legend {
+  width: 6px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+li.cset div {
+  display: inline-block;
+}
+li.cset ul.csethead {
+  display: block;
+  background-color: #ebebeb;
+  border-bottom: 1px solid #dcdcdc;
+}
+li.cset ul.csethead:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+}
 ul.csethead div {
-margin-right: 10px;
-padding-top: 6px;
-padding-bottom: 6px;
+  margin-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
-
 ul.csethead div.icon {
-    width: 12px;
-    height: 12px;
-    position:relative;
-    overflow: visible;
-    padding: 0px;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+  padding: 0;
 }
 ul.csethead div.icon img {
-    margin: auto;
-    position: absolute;
-    top: -2px;
-    width: 16px;
-    height: 16px;
+  margin: auto;
+  position: absolute;
+  top: -2px;
+  width: 16px;
+  height: 16px;
 }
-
-li.cset div
-{
-display: inline-block;
+ul.csethead li div.warning {
+  background-color: transparent;
+  color: #ff6464;
+  font-style: oblique;
 }
-
-li.cset ul.csethead:after,ul.details:after
-{
-    content: "."; 
-    visibility: hidden; 
-    display: block; 
-    height: 0;			    
-    clear: both;
+ul.csethead li div.warning a {
+  background-color: transparent;
+  color: #ff6464;
+  font-style: oblique;
 }
-
-li.cset ul.csethead
-{
-display: block;
-background-color: rgb(235,235,235);
-border-bottom: 1px solid rgb(220,220,220);
-}
-
 li.new {
-display:none;
-#line-height: 2em;
+  display: none;
 }
-
-ul li
-{
-float:left;
-margin-right: 4px;
-}
-
-ul.details
-{
-padding-left: 12px;
-padding-right: 12px;
-padding-top: 6px;
-padding-bottom: 6px;
-}
-
-ul.details li
-{
-margin: 3px;
-}
-
-ul.details li div
-{
-display: inline;
-border: 1px solid rgb(100,100,100);
-padding: 1px;
-}
-
-ul.details li div:first-child
-{
-background-color: rgb(255,255,200);
-padding: 1px;
-border-top-left-radius: 3px;
-border-bottom-left-radius: 3px;
-#border-right: 0px;
-padding-right: 3px;
-}
-
-ul.details li div+div
-{
-#background-color: rgb(240,220,220);
-padding: 1px;
-padding-left: 3px;
-border-top-right-radius: 3px;
-border-bottom-right-radius: 3px;
-border-left: 0px;
-}
-
-ul.details li.action_create div:first-child
-{
-background-color: rgb(220,255,220);
-#background-color: rgb(240,220,220);
-}
-ul.details li.action_delete div:first-child
-{
-background-color: rgb(255,220,220);
-}
-ul.details li.action_modify div:first-child
-{
-background-color: rgb(250,250,200);
-}
-ul.details li.action_geomodif div:first-child
-{
-background-color: rgb(236,236,236);
-}
-
-ul.details li div.trailer, ul.details li.comment div {
-border: 0px;
-background-color: transparent;
-}
-ul.csethead li div.warning a, ul.csethead li div.warning, div.error {
-background-color: transparent;
-color: rgb(255,100,100);
-font-style: oblique;
-#border: 2px solid rgb(255,100,100);
-}
-
-li div.changeset_tag-created_by {
-/* display: none; */
+div.error {
+  background-color: transparent;
+  color: #ff6464;
+  font-style: oblique;
 }
 li div.changeset_tag-source {
-display: none;
+  display: none;
 }
 li div.changeset_tag-imagery_used {
-display: none;
+  display: none;
 }
-
-ul.summary li
-{
-float:none;
-list-style-type:none;
-margin: 2px;
+ul.summary li {
+  float: none;
+  list-style-type: none;
+  margin: 2px;
 }
-
-ul.sum-list
-{
-margin-left: 10px;
+ul.sum-list {
+  margin-left: 10px;
 }
-
 .mapinfo {
-    padding: 6px 8px;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
+  padding: 6px 8px;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 table {
-    border-spacing: 0;
-    border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 tr.tagadded {
-    background: rgb(0,154,0);
+  background: #009a00;
 }
 tr.tagdeleted {
-    background: rgb(255,34,0);
+  background: #ff2200;
 }
 tr.tagchanged {
-    background: rgb(102,170,204);
+  background: #66aacc;
 }
 th {
-    background: rgb(220,220,220);
+  background: #dcdcdc;
+  padding-left: 2px;
+  padding-right: 4px;
+  border: 1px solid #646464;
+  max-width: 400px;
+  font-family: Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
+  font-size: 10px;
+  word-wrap: break-word;
 }
-td, th {
-    padding-left: 2px;
-    padding-right: 4px;
-    border: 1px solid rgb(100,100,100);
-    max-width: 400px;
-    font-family: Ubuntu,"Bitstream Vera Sans","DejaVu Sans",Tahoma,sans-serif;font-size:10px;
-    #overflow:hidden;
-    #white-space:nowrap;
-    word-wrap:break-word;
+td {
+  padding-left: 2px;
+  padding-right: 4px;
+  border: 1px solid #646464;
+  max-width: 400px;
+  font-family: Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
+  font-size: 10px;
+  word-wrap: break-word;
 }
 .leaflet-popup-content {
-    width:auto !important;
+  width: auto !important;
 }
 h1 {
-  font-family: Ubuntu,"Bitstream Vera Sans","DejaVu Sans",Tahoma,sans-serif;font-size:16px;
+  font-family: Ubuntu, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-serif;
+  font-size: 16px;
 }
-
-#lag, .csetopen,
-.node_create, .node_delete, .node_modify,
-.way_create, .way_delete, .way_modify,
-.relation_create, .relation_delete, .relation_modify,
-.simplenodes_create, .simplenodes_delete, .simplenodes_modify,
-.navigable_create, .navigable_delete {
-    display: inline;
-    position: relative;
+#lag {
+  display: inline;
+  position: relative;
 }
-
-#lag:hover:after, .csetopen:hover:after,
-.node_create:hover:after, .node_delete:hover:after, .node_modify:hover:after,
-.way_create:hover:after, .way_delete:hover:after, .way_modify:hover:after,
-.relation_create:hover:after, .relation_delete:hover:after, .relation_modify:hover:after,
-.simplenodes_create:hover:after, .simplenodes_delete:hover:after, .simplenodes_modify:hover:after,
-.navigable_create:hover:after, .navigable_delete:hover:after {
-    border: solid;
-    border-color: #000 transparent;
-    border-width: 6px 6px 0 6px;
-    bottom: 20px;
-    content: "";
-    left: 50%;
-    position: absolute;
-    z-index: 99;
+#lag:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
-
-#lag:hover:before, .csetopen:hover:before,
-.node_create:hover:before, .node_delete:hover:before, .node_modify:hover:before,
-.way_create:hover:before, .way_delete:hover:before, .way_modify:hover:before,
-.relation_create:hover:before, .relation_delete:hover:before, .relation_modify:hover:before,
-.simplenodes_create:hover:before, .simplenodes_delete:hover:before, .simplenodes_modify:hover:before,
-.navigable_create:hover:before, .navigable_delete:hover:before {
-    background: #000;
-    border-radius: 5px;
-    bottom: 26px;
-    color: #fff;
-    left: 20%;
-    padding: 5px 15px;
-    position: absolute;
-    z-index: 98;
-    width: 220px;
-}
-
 #lag:hover:before {
-    content: "How much this service is lagging behind OpenStreetMap minutely diffs.  Note that changeset timestamps are shown as the latest change to the changeset.  Since we are tracking changeset close events independently from the minutely diffs, the lag may be larger than the changeset timestamps.";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "How much this service is lagging behind OpenStreetMap minutely diffs.  Note that changeset timestamps are shown as the latest change to the changeset.  Since we are tracking changeset close events independently from the minutely diffs, the lag may be larger than the changeset timestamps.";
+}
+.csetopen {
+  display: inline;
+  position: relative;
+}
+.csetopen:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .csetopen:hover:before {
-    content: "Changeset is still open for edits";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Changeset is still open for edits";
+}
+.node_create {
+  display: inline;
+  position: relative;
+}
+.node_create:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .node_create:hover:before {
-    content: "Nodes created";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Nodes created";
+}
+.node_delete {
+  display: inline;
+  position: relative;
+}
+.node_delete:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .node_delete:hover:before {
-    content: "Nodes deleted";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Nodes deleted";
+}
+.node_modify {
+  display: inline;
+  position: relative;
+}
+.node_modify:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .node_modify:hover:before {
-    content: "Nodes modified";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Nodes modified";
+}
+.way_create {
+  display: inline;
+  position: relative;
+}
+.way_create:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .way_create:hover:before {
-    content: "Ways created";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Ways created";
+}
+.way_delete {
+  display: inline;
+  position: relative;
+}
+.way_delete:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .way_delete:hover:before {
-    content: "Ways deleted";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Ways deleted";
+}
+.way_modify {
+  display: inline;
+  position: relative;
+}
+.way_modify:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .way_modify:hover:before {
-    content: "Ways modified";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Ways modified";
+}
+.relation_create {
+  display: inline;
+  position: relative;
+}
+.relation_create:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .relation_create:hover:before {
-    content: "Relations created";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Relations created";
+}
+.relation_delete {
+  display: inline;
+  position: relative;
+}
+.relation_delete:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .relation_delete:hover:before {
-    content: "Relations deleted";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Relations deleted";
+}
+.relation_modify {
+  display: inline;
+  position: relative;
+}
+.relation_modify:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .relation_modify:hover:before {
-    content: "Relations modified";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Relations modified";
+}
+.simplenodes_create {
+  display: inline;
+  position: relative;
+}
+.simplenodes_create:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .simplenodes_create:hover:before {
-    content: "Simple nodes created (nodes with no tags)";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Simple nodes created (nodes with no tags)";
+}
+.simplenodes_delete {
+  display: inline;
+  position: relative;
+}
+.simplenodes_delete:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .simplenodes_delete:hover:before {
-    content: "Simple nodes deleted (nodes with no tags)";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Simple nodes deleted (nodes with no tags)";
+}
+.simplenodes_modify {
+  display: inline;
+  position: relative;
+}
+.simplenodes_modify:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .simplenodes_modify:hover:before {
-    content: "Simple nodes modified (nodes with no tags)";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Simple nodes modified (nodes with no tags)";
+}
+.navigable_create {
+  display: inline;
+  position: relative;
+}
+.navigable_create:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .navigable_create:hover:before {
-    content: "Navigable meters created (excluding waterways)";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Navigable meters created (excluding waterways)";
+}
+.navigable_delete {
+  display: inline;
+  position: relative;
+}
+.navigable_delete:hover:after {
+  border: solid;
+  border-color: #000 transparent;
+  border-width: 6px 6px 0 6px;
+  bottom: 20px;
+  content: "";
+  left: 50%;
+  position: absolute;
+  z-index: 99;
 }
 .navigable_delete:hover:before {
-    content: "Navigable meters deleted (excluding waterways)";
+  background: #000;
+  border-radius: 5px;
+  bottom: 26px;
+  color: #fff;
+  left: 20%;
+  padding: 5px 15px;
+  position: absolute;
+  z-index: 98;
+  width: 220px;
+  content: "Navigable meters deleted (excluding waterways)";
 }
 .startup {
-	margin-top: 5em;
-	margin-left: 2em;
+  margin-top: 5em;
+  margin-left: 2em;
 }
-
 .sq {
-    margin-top: 2em;
+  margin-top: 2em;
 }
-
 .sq #reverse-location {
-    margin-left: 2em;
-    display: inline;
-    padding: 1em;
+  margin-left: 2em;
+  display: inline;
+  padding: 1em;
 }
-
 .sq #reverse-location.found {
-    background-color: white;
+  background-color: white;
 }
-
 .leaflet-tile-pane {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
 }
