@@ -8,10 +8,10 @@ FULL=0
 NOCACHE=0
 DOCKER_ARGS=""
 CACHE_BUSTER=""
-#CACHE_BUSTER="$(date)"
+CACHE_BUSTER="$(date)"
 DOCKER_VOLUMES=""
-DOCKER_VOLUMES="-v ${HERE}/mounts/osmtracker:/osmtracker"
-#DOCKER_VOLUMES="-v ${HERE}/mounts/html:/html -v ${HERE}/mounts/osmtracker:/osmtracker"
+#DOCKER_VOLUMES="-v ${HERE}/mounts/osmtracker:/osmtracker"
+DOCKER_VOLUMES="-v ${HERE}/mounts/html:/html -v ${HERE}/mounts/osmtracker:/osmtracker"
 MONGO_CONTAINER=""
 MONGO_CONTAINER="osmat-container-mongo"
 IS_MONGO_STANDALONE=0
@@ -83,7 +83,17 @@ if [ "$DOCKER_VOLUMES" != "" ]; then
 		sed -i "s/localhost:27017/osmat-container-mongo:27017/" ${HERE}/mounts/osmtracker/supervisord.conf; \
 		echo "mongo container"; \
 	fi
-#	exit;
+
+	mkdir -p ${HERE}/mounts/html/jquery-2.1.3
+	cd ${HERE}/mounts/html/jquery-2.1.3
+	wget --no-verbose --timestamping https://code.jquery.com/jquery-2.1.3.min.js && ln -sfT jquery-2.1.3.min.js jquery.min.js
+	wget --no-verbose --timestamping http://timeago.yarp.com/jquery.timeago.js
+
+	mkdir -p ${HERE}/mounts/html/leaflet-0.7.7
+	cd ${HERE}/mounts/html/leaflet-0.7.7
+	wget --no-verbose --timestamping http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css
+	wget --no-verbose --timestamping http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js
+
 fi
 
 docker run -d ${DOCKER_LINK_TO} --restart=always --name=osmat-container -p 80:80 ${DOCKER_VOLUMES} osm-analytic-tracker:latest
