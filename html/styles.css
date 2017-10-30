@@ -164,6 +164,7 @@ li.cset {
   margin-top: 10px;
   margin-bottom: 14px;
   border: 1px solid #dcdcdc;
+  clear: both;
 }
 li.cset div.legend {
   width: 6px;
